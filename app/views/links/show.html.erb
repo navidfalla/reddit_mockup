@@ -1,0 +1,23 @@
+<strong><%= link_to(@link.title, @link.url, target: "_blank") %></strong><br/>
+<small>Submitted <%= time_ago_in_words(@link.created_at) %> ago by <%= @link.user.email %> </small>
+<p id="notice"><%= notice %></p>
+
+<ul>
+  <%= render(partial: 'comments/comment', collection: @link.comments) %>
+</ul>
+
+<p>
+  <%= @link.text %>
+</p>
+
+<% if @link.user == current_user %>
+  <%= link_to 'Edit', edit_link_path(@link) %> |
+  <%= link_to 'Delete', @link, method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
+  <%= link_to 'Back', links_path %>
+
+<h3>Comments</h3>
+<%= form_for [@link, Comment.new] do |f| %>
+<%= f.text_area :body, placeholder: "Add a comment" %><br/>
+<%= f.submit "Add Comment" %>
+<% end %>

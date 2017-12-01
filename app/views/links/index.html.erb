@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>My Reddit Mockup</h1>
+<p>After registeration and logging in, you can make a new post, comment on other posts, vote on posts, comment on comments, comments on comments of comments, vote on comments, vote on comments of comments of comments of comments and ... </p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Votes</th>
+      <th>Title</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @links.each do |link| %>
+      <tr>
+        <td><%= link_to "+", up_link_path(link), method: :put %>
+          <%= link.weighted_score %>
+          <%= link_to "-", down_link_path(link), method: :put %>
+        </td>
+        <td><%= link_to link.title, link %></td>
+        <td><%= link.user.email %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Post', new_link_path %>
