@@ -80,6 +80,3 @@ test:
 #
 production:
   <<: *default
-  database: reddit_mockup_production
-  username: reddit_mockup
-  password: <%= ENV['REDDIT_MOCKUP_DATABASE_PASSWORD'] %>
